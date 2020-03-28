@@ -24,6 +24,19 @@ class _HomeState extends State<Home> {
     _info = "Informe seus dados";
   }
 
+  void _calculate() {
+    double weight = double.parse(weightContoller.text);
+    double height = double.parse(heightContoller.text) / 100;
+    double imc = weight / (height * height);
+    setState(() {
+      if (imc < 18.6) {
+        _info = "Abaixo do peso (${imc.toStringAsPrecision(4)})";
+      } else {
+        _info = "";
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +84,7 @@ class _HomeState extends State<Home> {
               child: Container(
                 height: 50.0,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: _calculate,
                   child: Text(
                     "Calcular",
                     style: TextStyle(fontSize: 25.0, color: Colors.white),
