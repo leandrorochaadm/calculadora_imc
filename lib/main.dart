@@ -5,6 +5,7 @@ void main() {
   runApp(MaterialApp(
     title: "Calculadora IMC",
     home: Home(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -20,10 +21,12 @@ class _HomeState extends State<Home> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _resetFields() {
-    weightContoller.text = "";
-    heightContoller.text = "";
-    _info = "Informe seus dados";
-    _formKey = GlobalKey<FormState>();
+    setState(() {
+      weightContoller.text = "";
+      heightContoller.text = "";
+      _info = "Informe seus dados";
+      _formKey = GlobalKey<FormState>();
+    });
   }
 
   void _calculate() {
