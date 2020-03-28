@@ -14,6 +14,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  TextEditingController weightContoller = TextEditingController();
+  TextEditingController heightContoller = TextEditingController();
+  String _info = "Informe seus dados";
+
+  void _resetFields() {
+    weightContoller.text = "";
+    heightContoller.text = "";
+    _info = "Informe seus dados";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +32,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         backgroundColor: Colors.green,
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.refresh), onPressed: () {}),
+          IconButton(icon: Icon(Icons.refresh), onPressed: _resetFields),
         ],
       ),
       backgroundColor: Colors.white,
@@ -44,6 +54,7 @@ class _HomeState extends State<Home> {
               ),
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.green, fontSize: 25.0),
+              controller: weightContoller,
             ),
             TextField(
               keyboardType: TextInputType.number,
@@ -53,6 +64,7 @@ class _HomeState extends State<Home> {
               ),
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.green, fontSize: 25.0),
+              controller: heightContoller,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
@@ -69,7 +81,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             Text(
-              "Info",
+              _info,
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 25.0, color: Colors.green),
             ),
